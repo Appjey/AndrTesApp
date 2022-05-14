@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             auth.signOut()
             val i = Intent(this, Auth::class.java)
             startActivity(i)
+            this.finish()
         }
     }
 }
