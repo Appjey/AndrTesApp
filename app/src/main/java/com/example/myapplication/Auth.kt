@@ -74,6 +74,7 @@ class Auth : AppCompatActivity() {
         if(auth.currentUser != null) {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
+            this.finish()
         }
     }
 }
