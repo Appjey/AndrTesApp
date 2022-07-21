@@ -1,9 +1,13 @@
 buildscript {
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.google.gms:google-services:4.3.13'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
+
     }
     repositories {
         google()
+        mavenLocal()
         mavenCentral()
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
