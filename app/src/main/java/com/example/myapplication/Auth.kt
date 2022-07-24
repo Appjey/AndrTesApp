@@ -1,20 +1,24 @@
 package com.example.myapplication
 
+import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityAuthBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+
 
 class Auth : AppCompatActivity() {
     lateinit var launcher: ActivityResultLauncher<Intent>
@@ -40,6 +44,12 @@ class Auth : AppCompatActivity() {
         }
         binding.bGlgSingin.setOnClickListener{
             signInWithGoogle()
+        }
+        binding.bAnonSingin.setOnClickListener{
+            signInAnonymously()
+        }
+        binding.bEmailSingin.setOnClickListener{
+            signInWithEmail()
         }
         checkAuthState()
     }
@@ -70,11 +80,54 @@ class Auth : AppCompatActivity() {
         }
     }
 
-    fun checkAuthState(){
-        if(auth.currentUser != null) {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            this.finish()
+    private fun signInAnonymously() {
+        auth.signInAnonymously()
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInAnonymously:success")
+                    checkAuthState(auth.currentUser)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInAnonymously:failure", task.exception)
+                    Toast.makeText(this, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                    checkAuthState(null)
+                }
+            }
+    }
+
+private fun signInWithEmail() {
+        val email = binding.etEmail.text.toString()
+        val password = binding.etPassword.text.toString()
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    checkAuthState(auth.currentUser)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(this, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                    checkAuthState(null)
+                }
+            }
+    }
+    private fun checkAuthState(user: FirebaseUser? = auth.currentUser){
+        if(user != null){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
+
+    private fun requireActivity() = this
+
+//    fun checkAuthState(user : FirebaseUser? = auth.currentUser){
+//        if(user != null) {
+//            val i = Intent(this, MainActivity::class.java)
+//            startActivity(i)
+//            this.finish()
+//        }
 }

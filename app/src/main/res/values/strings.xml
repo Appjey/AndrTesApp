@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="google_auth">Google Auth</string>
+    <string name="anon_auth">Anon auth</string>
+    <string name="phone_auth">Phone Auth</string>
+    <string name="email_auth">Email Auth</string>
 </resources>
