@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/auth">
+
+
+    <activity
+        android:id="@+id/auth"
+        android:name="com.example.myapplication.Auth"
+        android:label="activity_auth"
+        tools:layout="@layout/activity_auth" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.myapplication.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/signUp"
+        android:name="com.example.myapplication.SignUp"
+        android:label="activity_email_sign_up"
+        tools:layout="@layout/activity_email_sign_up" />
+</navigation>

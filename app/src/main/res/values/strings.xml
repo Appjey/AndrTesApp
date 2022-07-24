@@ -4,4 +4,9 @@
     <string name="anon_auth">Anon auth</string>
     <string name="phone_auth">Phone Auth</string>
     <string name="email_auth">Email Auth</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="back">Back</string>
+    <string name="logout">LogOut</string>
+    <string name="email_sign_Up" />
+    <string name="email_sign_In" />
 </resources>

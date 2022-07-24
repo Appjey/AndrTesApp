@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.example.myapplication.databinding.ActivityAuthBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -39,7 +40,7 @@ class Auth : AppCompatActivity() {
                     firebaseAuthWithGoogle(account.idToken!!)
                 }
             } catch (e: ApiException){
-                Log.d("Error","123")
+                Log.d("Error","Can't get account")
             }
         }
         binding.bGlgSingin.setOnClickListener{
@@ -51,6 +52,13 @@ class Auth : AppCompatActivity() {
         binding.bEmailSingin.setOnClickListener{
             signInWithEmail()
         }
+        binding.bEmailSingUp.setOnClickListener{
+            signUpWithEmail()
+        }
+
+//        binding.bPhoneSignIn.setOnClickListener{
+//            signInWithPhone()
+//        }
         checkAuthState()
     }
     private fun getClient(): GoogleSignInClient{
@@ -100,6 +108,11 @@ class Auth : AppCompatActivity() {
 private fun signInWithEmail() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please enter text in email/password fields",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
@@ -115,6 +128,11 @@ private fun signInWithEmail() {
                 }
             }
     }
+
+    private fun signUpWithEmail() {
+
+    }
+
     private fun checkAuthState(user: FirebaseUser? = auth.currentUser){
         if(user != null){
             startActivity(Intent(this, MainActivity::class.java))
