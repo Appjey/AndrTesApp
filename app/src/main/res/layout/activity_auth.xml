@@ -141,7 +141,7 @@
         android:id="@+id/bEmailSingUp"
         android:layout_width="153dp"
         android:layout_height="54dp"
-        android:text="email sign Up"
+        android:text="sign Up"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -149,7 +149,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.348"
-        tools:text="email sign Up" />
+        tools:text="sign Up" />
 
     <EditText
         android:id="@+id/etSmsCode"

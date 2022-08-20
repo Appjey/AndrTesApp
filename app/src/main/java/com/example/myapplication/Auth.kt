@@ -130,7 +130,8 @@ private fun signInWithEmail() {
     }
 
     private fun signUpWithEmail() {
-
+        val i = Intent(this, SignUp::class.java)
+        startActivity(i)
     }
 
     private fun checkAuthState(user: FirebaseUser? = auth.currentUser){
