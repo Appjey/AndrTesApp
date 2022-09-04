@@ -9,4 +9,8 @@
     <string name="logout">LogOut</string>
     <string name="email_sign_Up" />
     <string name="email_sign_In" />
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

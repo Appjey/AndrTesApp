@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
 import com.example.myapplication.databinding.ActivityAuthBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -134,12 +133,18 @@ private fun signInWithEmail() {
         startActivity(i)
     }
 
-    private fun checkAuthState(user: FirebaseUser? = auth.currentUser){
+    public fun checkAuthState(user: FirebaseUser? = auth.currentUser){
         if(user != null){
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity2::class.java))
             finish()
         }
     }
+
+    override fun onBackPressed() {
+        // super.onBackPressed();
+        // ваш код
+    }
+
 
     private fun requireActivity() = this
 
