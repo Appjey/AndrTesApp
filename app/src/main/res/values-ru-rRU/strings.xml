@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_home">Домашняя страница</string>
+    <string name="title_dashboard">Что-нибудь</string>
+    <string name="title_notifications">Личный кабинет</string>
+    <string name="google_auth">Google Auth</string>
+    <string name="anon_auth">Anon Auth</string>
+    <string name="phone_auth">Phone Auth</string>
+    <string name="email_auth">Email Auth</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="back">Назад</string>
+    <string name="logout">Выйти</string>
+    <string name="email_sign_Up">Регистрация</string>
+    <string name="email_sign_In">Авторизация</string>
+    <string name="title_activity_main2">MainActivity2</string>
+</resources>

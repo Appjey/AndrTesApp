@@ -55,7 +55,7 @@
         android:layout_width="146dp"
         android:layout_height="50dp"
         android:layout_marginStart="48dp"
-        android:text="email auth"
+        android:text="@string/sign_up"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bEmailSingUp"
