@@ -15,6 +15,7 @@
         android:layout_height="57dp"
         android:text="@string/google_auth"
         android:textColor="#FFFFFF"
+        app:srcCompat="@drawable/fui_ic_googleg_color_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.755"
@@ -167,7 +168,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.348"
         tools:text="sign Up" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
