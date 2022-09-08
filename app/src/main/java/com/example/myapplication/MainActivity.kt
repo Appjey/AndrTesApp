@@ -3,12 +3,14 @@ package com.example.myapplication
 import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -30,12 +32,11 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
         val myWebView = WebView(this)
         myWebView.settings.javaScriptEnabled = true
-        myWebView.settings.domStorageEnabled = true
-        myWebView.settings.setAppCacheEnabled(true)
-        myWebView.settings.cacheMode = WebSettings.LOAD_DEFAULT
-        myWebView.settings.setSupportZoom(true)
-        myWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        myWebView.settings.allowContentAccess = true
+        myWebView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+        setContentView(myWebView)
         myWebView.loadUrl(idUrl)
+        //binding.videoView2.setVideoURI(Uri.parse(idUrl))
         binding.bLogOut.setOnClickListener{
             auth.signOut()
             val i = Intent(this, Auth::class.java)

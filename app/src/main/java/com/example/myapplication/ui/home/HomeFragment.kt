@@ -7,16 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-import coil.transform.CircleCropTransformation
-import com.example.myapplication.HelloScreen
 import com.example.myapplication.MainActivity
-import com.example.myapplication.MainActivity2
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.firebase.database.DataSnapshot
@@ -25,7 +22,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import kotlin.math.log
+
 
 class HomeFragment : Fragment() {
 
@@ -60,7 +57,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //binding.bBaseUPD.setOnClickListener {
-
+        // Hide Action Bar
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            // Image Listener
             val imageListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val pathToImage = dataSnapshot.getValue<String>()
@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
 // set on-click listener for ImageView
                         crossfade(false)
                         placeholder(R.drawable.ic_launcher_background)
-                        transformations(CircleCropTransformation())
+//                        transformations(fitCenter())
                     }
                 }
 
@@ -80,6 +80,7 @@ class HomeFragment : Fragment() {
                     Log.w(TAG, "Error message", databaseError.toException())
                 }
             }
+        // Video Listener
         val filmListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val pathToFilm = dataSnapshot!!.getValue<String>()
@@ -100,8 +101,8 @@ class HomeFragment : Fragment() {
             }
         }
 
-            val image = database.getReference("1").child("jpg")
-            val film = database.getReference("1").child("film")
+            val image = database.getReference("Movies").child("1").child("jpg")
+            val film = database.getReference("Movies").child("1").child("film")
             image.addValueEventListener(imageListener)
             film.addValueEventListener(filmListener)
 
