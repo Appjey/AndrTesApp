@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 
@@ -135,6 +136,8 @@ private fun signInWithEmail() {
 
     public fun checkAuthState(user: FirebaseUser? = auth.currentUser){
         if(user != null){
+            val databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+            databaseReference.child(user!!.uid).child("email").setValue(user.email)
             startActivity(Intent(this, MainActivity2::class.java))
             finish()
         }
