@@ -10,7 +10,9 @@ import androidx.databinding.DataBindingUtil.setContentView
 import com.example.myapplication.databinding.ActivityEmailSignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+
 
 class SignUp : AppCompatActivity() {
     lateinit var binding: ActivityEmailSignUpBinding
@@ -38,6 +40,13 @@ class SignUp : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
+
+                        val databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+
+// to test if is working
+                        databaseReference.child(user!!.uid).child("email").setValue(email)
+                        //databaseReference.child(user.uid).child("passwd").setValue(password)
+
                         startActivity(Intent(this, MainActivity2::class.java))
                         this.finish()
                     } else {
