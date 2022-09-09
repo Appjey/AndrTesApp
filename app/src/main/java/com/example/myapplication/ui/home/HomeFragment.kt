@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
         // Video Listener
         val filmListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val pathToFilm = dataSnapshot!!.getValue<String>()
+                val pathToFilm = dataSnapshot.getValue<String>()
                 Log.e(TAG, "film: $pathToFilm")
 
                 binding.textHome.text = pathToFilm
